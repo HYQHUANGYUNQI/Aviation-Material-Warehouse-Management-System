@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--    样式-->
+    <style>
+        body{
+            background-color:#FFFFFF;
+        }
+        #title{
+            color: #3f3f3f;
+            margin-left: 42%;
+        }
+        #register-group{
+            margin-top: 8%;
+        }
+        #register-input{
+            width: 23%;
+            height: 110%;
+            text-align: left;
+            margin: 0 auto;
+        }
+        #submit{
+            background-color: #6a6a6a;
+            width: 100%;
+            height: 100%;
+        }
+        #special-situation{
+            font-size: small;
+            font-family: 微软雅黑,serif;
+            color:#676767;
+            margin-left: 0;
+        }
+        a:link{
+            color: #6a6a6a;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        i{
+            color: #3f3f3f;
+        }
+        .error{
+            color: #d9d9d9;
+            font-size: x-small;
+        }
+        i{
+            color: #f4f4f4;
+        }
+        body{
+            background-image: url("/AMWMS/images/b3.png");
+
+        }
+    </style>
+</head>
+<body>
+<div id="register-group">
+    <h2 id="title" style="color:#f4f4f4;"><i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Register</h2>
+    <br>
+    <form id="register-input">
+        <input type="text" class="form-control" placeholder="Username" id="username" name="username" style="background-color: #eeeeee;">
+        <br>
+        <input type="password" class="form-control" placeholder="Password" id="password" name="password" style="background-color: #eeeeee;">
+        <br>
+        <input type="password" class="form-control" placeholder="repeat your password" id="repeatpassword" name="repeatpassword" style="background-color: #eeeeee;">
+        <br>
+        <div id="special-situation" style="color: #d9d9d9;">
+            <input type="checkbox" checked="checked" disabled="false">
+            已同意相关政策和条款
+        </div>
+        <br>
+        <button type="submit" class="btn btn-danger" id="submit" style="background-color:#bd362f;color: #d9d9d9">注册</button>
+    </form>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<script>
+$.validator.setDefaults({
+    submitHandler: function() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var repeat = document.getElementById("repeatpassword").value;
+        //注册成功
+        $.ajax({
+            type:"post",
+            url:"/AMWMS/register?username="+username+"&&password="+password,//在user表中插入数据
+            success:function (result) {
+            	var json = $.parseJSON(result);
+                if (json.flag) {
+                    alert("注册成功！"+"您的登陆id为："+json.user.userId);
+                    window.location.href = "/AMWMS/login.html";
+                } else {
+                    alert("系统繁忙，请稍后再试");
+                }
+            }
+        })
+
+    }
+})
+
+    $(function () {
+        // 验证函数
+        $('#register-input').validate({
+            rules: {
+                username: {
+                    required: true,
+                    rangelength: [1, 12]
+                },
+                password: {
+                    required: true,
+                    rangelength: [6, 16]
+                },
+                repeatpassword: {
+                    required: true,
+                    equalTo:"#password"
+                },
+            },
+            messages: {
+                username: {
+                    required: "请输入用户名",
+                    rangelength: $.validator.format("用户名长度须介于1至12个字符之间")
+                },
+                password: {
+                    required: "请输入密码",
+                    rangelength: $.validator.format("密码长度须介于6至16个字符之间")
+                },
+                repeatpassword: {
+                    required: "请再次确认密码",
+                    equalTo:"请确认两次输入的密码是否一致"
+                },
+            },
+        });
+    })
+</script>
+</body>
+</html>

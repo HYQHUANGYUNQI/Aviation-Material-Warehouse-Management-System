@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>航材仓库管理系统</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+
+    <!-- PAGE LEVEL PLUGINS STYLES -->
+    <!-- REQUIRE FOR SPEECH COMMANDS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/plugins/gritter/jquery.gritter.css" />
+
+    <!-- Tc core CSS -->
+    <link id="qstyle" rel="stylesheet" href="assets/css/themes/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+
+
+    <!-- Add custom CSS here -->
+
+    <!-- End custom CSS here -->
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+        #button-group{
+            margin-bottom: 2cm;
+            margin-top: 2%;
+        }
+        #reset-button, #add-button{
+            width: 3cm;
+            float: right;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="main-container">
+        <!--		顶部导航栏-->
+        <nav class="navbar-top" role="navigation">
+            <!--			顶栏标语-->
+            <div class="navbar-header">
+                <h4 id="title">你好，普通用户</h4>
+            </div>
+            <!--			顶栏图标-->
+            <div class="nav-top">
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#" class="fa fa-bell-o"></a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa fa-sign-out"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--		侧边导航栏-->
+        <nav class="navbar-side" role="navigation">
+            <div class="navbar-collapse sidebar-collapse collapse">
+                <ul id="side" class="nav navbar-nav side-nav">
+                    <li>
+                        <h4>导航</h4>
+                    </li>
+                    <!--					申请管理-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa  fa-arrows"></i> 航材备案 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="application-management">
+                            <li>
+                                <a href="/AMWMS/user/airmaterial.jsp">
+                                    <i class="fa fa-angle-double-right"></i> 备案列表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/addMaterial.html">
+                                    <i class="fa fa-angle-double-right"></i> 备案添加
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/myAirMaterial.html">
+                                    <i class="fa fa-angle-double-right"></i> 我的备案
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--					仓库申请-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#forms">
+                            <i class="fa fa-comments"></i> 仓库申请 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="storage-information">
+                            <li>
+                                <a href="/AMWMS/user/searchStorage.html">
+                                    <i class="fa fa-angle-double-right"></i> 仓库查询
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/inApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 入库申请
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/outApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 出库申请
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/myApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 我的申请
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--					个人信息-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#forms">
+                            <i class="fa fa-tty"></i> 个人信息 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="self-information">
+                            <li>
+                                <a href="/AMWMS/user/userinfomation.html">
+                                    <i class="fa fa-angle-double-right"></i> 基本资料
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--			主要内容-->
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">仓库申请</a>
+                            </li>
+                            <li class="active">出库申请</li>
+                        </ul>
+                        <div class="b-right hidden-xs">
+                            <ul>
+                                <li><a href="#" title=""><i class="fa fa-signal"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-comments"></i></a></li>
+                                <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <!--	信息填写-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet">
+                        <div class="portlet-heading dark">
+                            <div class="portlet-title">
+                                <h4 style=""><i class="fa fa-edit"></i> 信息填写</h4>
+                            </div>
+                        </div>
+                        <!--							输入框组-->
+                        <div class="portlet-body">
+                            <form class="form-horizontal" id="add-outApplication">
+                                <div>
+                                    <!--									申请单号-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">申请单号:</label>
+                                        <div class="col-sm-3">
+                                            <div5 class="clearfix">
+                                                <input type="text" class="form-control" id="formId-add" name="formId">                                           </div5>
+                                        </div>
+                                    </div>
+                                    <!--									申请人-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">申请人:</label>
+                                        <div class="col-sm-3">
+                                            <div class="clearfix">
+                                                <input type="text" class="form-control" id="applicant-add" name="applicant">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--									出库时间-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">出库时间:</label>
+                                        <div class="col-sm-3">
+                                            <div class="clearfix">
+                                                <input type="text" class="form-control" id="removalDate-add" name="removalDate" value="2019-9-5">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--									仓库-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">仓库:</label>
+                                        <div class="col-sm-4">
+                                            <div class="clearfix">
+                                                <input type="text" class="form-control" id="storage-add" name="storage">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="separator" />
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            航材列表-->
+            <div class="page-header no-padding-bottom">
+                <h4>航材列表 &nbsp;&nbsp;<small>航材须为“已入库”状态</small>
+                    <button type="button" class="btn btn-second fa fa-plus" id="add-airMaterial-button" data-toggle="modal" data-target="#add-airMaterial-dialog" style="float: right;border: hidden;background: none">
+                    </button></h4>
+            </div>
+            <table id="added-airMaterial-table"  class="table table-bordered table-striped  table-primary footable" data-page-size="2">
+                <thead style="background-color:#3f3f3f;color: #d9d9d9;font-family: 等线"></thead>
+            </table>
+
+            <!--弹窗-添加航材-->
+            <div class="modal fade bd-example-modal-lg" id="add-airMaterial-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">添加航材</h5>
+                        </div>
+                        <div class="modal-body">
+                            <!--表格-->
+                            <table id="myAirMaterial-table">
+
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-second" data-dismiss="modal" aria-label="Close">关闭</button>
+                            <button type="button" class="btn btn-primary">添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--					按钮组-->
+            <div id="button-group">
+                <button type="button" class="btn btn-inverse" id="reset-button">重置</button>
+                <button type="button" class="btn btn-primary" id="add-button">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- core JavaScript -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/js/plugins/pace/pace.min.js"></script>
+
+<!-- PAGE LEVEL PLUGINS JS -->
+<script src="assets/js/plugins/fuelux/wizard.min.js"></script>
+<script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/additional-methods.min.js"></script>
+
+<!-- Themes Core Scripts -->
+<script src="assets/js/main.js"></script>
+
+<!-- REQUIRE FOR SPEECH COMMANDS -->
+<script src="assets/js/speech-commands.js"></script>
+<script src="assets/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+<!-- initial page level scripts for examples -->
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.init.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+<script>
+    var userId;
+    var userName;
+    $(function () {
+        $("[data-toggle='popover']").popover();
+
+        $.post("/AMWMS/user",
+            function(res){
+                var json = $.parseJSON(res);
+                userId = json.userId;
+                userName = json.userName;
+                document.getElementById("applicant-add").value = userName;
+                document.getElementById("title").innerHTML = "你好，"+ userName;
+            });
+        $.post("/AMWMS/outApplication",
+        		function(result){
+        			var json = JSON.parse(result);
+        			var form = json.formId;
+        			document.getElementById("formId-add").value = form;
+        			
+        	        var materials = new Array();
+        	        $('#added-airMaterial-table').bootstrapTable({
+        	            method: 'post',
+        	            url:"/AMWMS/outApplication?apply=table",
+        	            striped: true,
+        	            pagination: true,
+        	            dataType: 'json',
+        	            pageNumber: 1, //初始化加载第一页，默认第一页
+        	            pageSize: 10, //每页的记录行数
+        	            onClickRow:function(row, $element) {
+        	                var temp = row['serial'];
+        	                var param1={
+        	                    url:"/AMWMS/outApplication?apply=table&&type=del&&serial="+temp,
+        	                }
+        	                var param2 = {
+        	                    url:"/AMWMS/outApplication?apply=mytable&&type=add&&serial="+temp,
+        	                }
+        	                $('#added-airMaterial-table').bootstrapTable('refresh', param1);
+        	                $('#myAirMaterial-table').bootstrapTable('refresh', param2);
+        	                materials.forEach(function(item, index, arr) {
+        	                    if(item == temp) {
+        	                        arr.splice(index, 1);
+        	                    }
+        	                });
+        	            },
+        	            columns: [
+        	                {
+        	                    field: 'serial',
+        	                    title: '序列号'
+        	                }, {
+        	                    field: 'materialName',
+        	                    title: '航材名称'
+        	                }, {
+        	                    field: 'commodityNumber',
+        	                    title: '件号'
+        	                }, {
+        	                    field: 'partsTypeId',
+        	                    title: '备件类型'
+        	                }, {
+        	                    field: 'supplierId',
+        	                    title: '供应商'
+        	                }, {
+        	                    field: 'locationId',
+        	                    title: '货位信息'
+        	                }, {
+        	                    field: 'purchaseDate',
+        	                    title: '采购日期'
+        	                }]
+        	        });
+
+        	        // 航材列表获取
+        	        $('#myAirMaterial-table').bootstrapTable({
+        	            method: 'post',
+        	            url:"/AMWMS/outApplication?apply=mytable",
+        	            striped: true,
+        	            dataType: 'json',
+        	            pageNumber: 1,                       //初始化加载第一页，默认第一页
+        	            pageSize: 10, //每页的记录行数
+        	            onClickRow:function(row, $element) {
+        	                var temp = row['serial'];
+        	                var param1={
+        	                    url:"/AMWMS/outApplication?apply=table&&type=add&&serial="+temp,
+        	                }
+        	                var param2 = {
+        	                    url:"/AMWMS/outApplication?apply=mytable&&type=del&&serial="+temp,
+        	                }
+        	                $('#added-airMaterial-table').bootstrapTable('refresh', param1);
+        	                $('#myAirMaterial-table').bootstrapTable('refresh', param2);
+        	                materials.push(temp);
+        	            },
+        	            columns: [
+        	                {
+        	                    field: 'serial',
+        	                    title: '序列号'
+        	                }, {
+        	                    field: 'materialName',
+        	                    title: '航材名称'
+        	                }, {
+        	                    field: 'commodityNumber',
+        	                    title: '件号'
+        	                }, {
+        	                    field: 'partsTypeId',
+        	                    title: '备件类型'
+        	                }, {
+        	                    field: 'supplierId',
+        	                    title: '供应商'
+        	                }, {
+        	                    field: 'purchaseDate',
+        	                    title: '采购日期'
+        	                },]
+        	        });
+
+        	        $("#reset-button").click(function(){
+        	            var param1={
+        	                url:"/AMWMS/outApplication?apply=table&&type=reset",
+        	            }
+        	            var param2 = {
+        	                url:"/AMWMS/outApplication?apply=mytable&&type=reset",
+        	            }
+        	            $('#added-airMaterial-table').bootstrapTable('refresh', param1);
+        	            $('#myAirMaterial-table').bootstrapTable('refresh', param2);
+        	            materials = new Array();
+        	        });
+
+        	        $("#add-button").click(function(){
+        	            var info = $("#add-outApplication").serializeArray();
+        	            $.post("/AMWMS/add/applicateAirMaterial",
+        	                {"apply":"outapply",
+        	                    "formId":info[0].value,
+        	                    "storage":info[3].value,
+        	                    "date":info[2].value,
+        	                    "materials":materials},
+        	                function(msg){
+        	                    var json = $.parseJSON(msg);
+        	                    var sig = json.flag;
+        	                    if(sig){
+        	                        alert("提交成功!"+ json.num + "条记录" );
+        	                    }
+        	                    else {
+        	                        alert("更新失败!");
+        	                    }
+        	                });
+        	        });
+        	});
+        // 表格数据获取
+
+    })
+
+
+
+</script>
+</body>
+</html>

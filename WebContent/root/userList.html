@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>航材仓库管理系统</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+
+    <!-- PAGE LEVEL PLUGINS STYLES -->
+    <!-- REQUIRE FOR SPEECH COMMANDS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/plugins/gritter/jquery.gritter.css" />
+
+    <!-- Tc core CSS -->
+    <link id="qstyle" rel="stylesheet" href="assets/css/themes/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+
+
+    <!-- Add custom CSS here -->
+
+    <!-- End custom CSS here -->
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="main-container">
+
+        <!--		顶部导航栏-->
+        <nav class="navbar-top" role="navigation">
+            <!--			顶栏标语-->
+            <div class="navbar-header">
+                <h3 id="title">  Hello,  root</h3>
+            </div>
+            <!--			顶栏图标-->
+            <div class="nav-top">
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#" class="fa fa-bell-o"></a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa fa-sign-out"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--		侧边导航栏-->
+        <nav class="navbar-side" role="navigation">
+            <div class="navbar-collapse sidebar-collapse collapse">
+                <ul id="side" class="nav navbar-nav side-nav">
+                    <li>
+                        <h4>导航</h4>
+                    </li>
+                    <li class="panel">
+                        <a href="/AMWMS/root/userList.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa fa-cogs"></i> 用户信息
+                        </a>
+                    </li>
+                    <li class="panel">
+                        <a href="/AMWMS/root/managerList.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa fa-cogs"></i> 管理员列表
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+        <!--			顶部文字+图标区域-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li class="active">用户列表</li>
+                        <li>
+                            <a href="#">用户信息</a>
+                        </li>
+                    </ul>
+                    <div class="b-right hidden-xs">
+                        <ul>
+                            <li><a href="#" title=""><i class="fa fa-signal"></i></a></li>
+                            <li><a href="#" title=""><i class="fa fa-comments"></i></a></li>
+                            <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <br>
+            <!--			表单内容-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet">
+                        <div class="portlet-heading dark">
+                            <div class="portlet-title">
+                                <h4>用户列表<small class="text-white"></small></h4>
+                            </div>
+                            <div class="portlet-widgets">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#basic"><i class="fa fa-chevron-down"></i></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="basic" class="panel">
+                            <div class="portlet-body no-padding">
+                                <table id="allUser-table"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<!-- core JavaScript -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/js/plugins/pace/pace.min.js"></script>
+
+<!-- PAGE LEVEL PLUGINS JS -->
+<script src="assets/js/plugins/fuelux/wizard.min.js"></script>
+<script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/additional-methods.min.js"></script>
+
+<!-- Themes Core Scripts -->
+<script src="assets/js/main.js"></script>
+
+<!-- REQUIRE FOR SPEECH COMMANDS -->
+<script src="assets/js/speech-commands.js"></script>
+<script src="assets/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+<!-- initial page level scripts for examples -->
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.init.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+<script>
+    $(function () {
+        $('#allUser-table').bootstrapTable({
+            method: 'POST',
+            url:"/AMWMS/user?identity=root&&req=users",//返回全部用户列表（包括管理员和普通用户）
+            striped: true,
+            pagination: true,
+            checkbox:true,
+            dataType: 'json',
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数
+            columns: [
+                {
+                    field: 'userId',
+                    title: 'ID'
+                }, {
+                    field: 'userName',
+                    title: '用户名'
+                }, {
+                    field: 'duty',
+                    title: '权限级别'
+                }, {
+                    field: 'pwd',
+                    title: '密码'
+                }],
+            onClickRow:function(row, $element) {
+                var temp = row['userId'];
+                var duty = row['duty'];
+                if (duty === 'manager') {
+                    window.location.href="/AMWMS/root/managerInfo.html?userId=" + temp;
+                } else if (duty === 'user'){
+                    window.location.href="/AMWMS/root/userInfo.html?userId=" + temp;
+                }
+            },
+        })
+    })
+</script>
+</body>
+</html>

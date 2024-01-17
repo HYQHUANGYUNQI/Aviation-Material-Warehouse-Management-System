@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--    样式-->
+    <style>
+        body{
+            background-color:#ffffff;
+        }
+        #title{
+            color: #3f3f3f;
+        }
+        #login-group{
+            text-align: center;
+            margin-top: 8%;
+        }
+        #login-input{
+            width: 23%;
+            height: 110%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        #submit{
+            background-color: #6a6a6a;
+            width: 100%;
+            height: 100%;
+        }
+        #special-situation{
+            font-size: small;
+            font-family: 微软雅黑;
+            color:#676767;
+        }
+        a:link{
+            color: #6a6a6a;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        i{
+            color: #f4f4f4;
+        }
+        body
+        {
+            background-image: url("/AMWMS/images/b3.png");
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div id="all"></div>
+    <div id="login-group">
+        <i class="fa fa-user-circle-o fa-4x"></i>
+        <h3 id="title" style="color: #d9d9d9;">Login</h3>
+        <br>
+        <div id="login-input">
+            <input type="text" class="form-control" placeholder="Username" id="username" style="background-color: #eeeeee">
+            <br>
+            <input type="password" class="form-control" placeholder="Password" id="password" style="background-color: #eeeeee">
+            <br>
+            <div id="special-situation">
+                <a id="forgerPassword" href="#" style="color: #d9d9d9;">忘记密码</a>
+                <a id="register" href="/AMWMS/register.html" style="margin-left: 30%;color: #d9d9d9;" >注册</a>
+            </div>
+            <br>
+            <button type="button" class="btn btn-danger" id="submit" style="background-color:#bd362f;color: #d9d9d9">登录</button>
+        </div>
+    </div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+
+<script>
+    $(function () {
+        // 登录验证
+        $('#submit').click(function () {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            $.ajax({
+                type:"post",
+                url:"/AMWMS/login?username=" + username + "&&password=" + password,
+                success:function (msg) {
+                	var json = $.parseJSON(msg);
+                    if (json.flag && json.identity == "user") {
+                    	window.location.href = '/AMWMS/user/user.jsp?username='+username; 
+                    }
+                    else if (json.flag && json.identity == "manager") {
+                    	
+                    	window.location.href = '/AMWMS/manager/manager.jsp?username='+username;
+                    }else if(json.flag && json.identity == "root"){
+                    	
+                    	window.location.href = '/AMWMS/root/userList.html';
+                    }
+                    
+                    else {
+                        alert("请输入正确信息！");
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

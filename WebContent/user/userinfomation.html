@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Profile - eKoders Responsive Admin Theme</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+
+    <!-- PAGE LEVEL PLUGINS STYLES -->
+    <link rel="stylesheet" href="assets/css/plugins/jqueryui/jquery-ui.custom.min.css" />
+    <link href="assets/css/plugins/select2/select2.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap-wysihtml/bootstrap-wysihtml5.css">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap-editable/bootstrap-editable.css">
+    <!-- REQUIRE FOR SPEECH COMMANDS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/plugins/gritter/jquery.gritter.css" />
+
+    <!-- Tc core CSS -->
+    <link id="qstyle" rel="stylesheet" href="assets/css/themes/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+
+
+    <!-- Add custom CSS here -->
+
+    <!-- End custom CSS here -->
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="main-container">
+        <!-- BEGIN TOP NAVIGATION -->
+        <!--		顶部导航栏-->
+        <nav class="navbar-top" role="navigation">
+            <!--			顶栏标语-->
+            <div class="navbar-header">
+                <h4 id="title">你好，管理员</h4>
+            </div>
+            <!--			顶栏图标-->
+            <div class="nav-top">
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#" class="fa fa-bell-o"></a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa fa-sign-out"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--		侧边导航栏-->
+        <nav class="navbar-side" role="navigation">
+            <div class="navbar-collapse sidebar-collapse collapse">
+                <ul id="side" class="nav navbar-nav side-nav">
+                    <li>
+                        <h4>导航</h4>
+                    </li>
+                    <!--					申请管理-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa  fa-arrows"></i> 航材备案 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="application-management">
+                            <li>
+                                <a href="/AMWMS/user/airmaterial.jsp">
+                                    <i class="fa fa-angle-double-right"></i> 备案列表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/addMaterial.html">
+                                    <i class="fa fa-angle-double-right"></i> 备案添加
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/myAirMaterial.html">
+                                    <i class="fa fa-angle-double-right"></i> 我的备案
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--					仓库申请-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#forms">
+                            <i class="fa fa-comments"></i> 仓库申请 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="storage-information">
+                            <li>
+                                <a href="/AMWMS/user/searchStorage.html">
+                                    <i class="fa fa-angle-double-right"></i> 仓库查询
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/inApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 入库申请
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/outApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 出库申请
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AMWMS/user/myApplication.html">
+                                    <i class="fa fa-angle-double-right"></i> 我的申请
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--					个人信息-->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#forms">
+                            <i class="fa fa-tty"></i> 个人信息 <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse nav" id="self-information">
+                            <li>
+                                <a href="/AMWMS/user/userinfomation.html">
+                                    <i class="fa fa-angle-double-right"></i> 基本资料
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- BEGIN MAIN PAGE CONTENT -->
+        <div id="page-wrapper">
+            <!-- BEGIN PAGE HEADING ROW -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- BEGIN BREADCRUMB -->
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">个人信息</a>
+                            </li>
+                            <li class="active">基本资料</li>
+                        </ul>
+
+                        <div class="b-right hidden-xs">
+                            <ul>
+                                <li><a href="#" title=""><i class="fa fa-signal"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-comments"></i></a></li>
+                                <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="fa fa-plus"></i><span></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END PAGE HEADING ROW -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- START YOUR CONTENT HERE -->
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="tc-tabs"><!-- Nav tabs style 1 -->
+                                <ul class="nav nav-tabs tab-lg-button tab-color-dark background-dark white">
+                                    <li class="active"><a href="#p1" data-toggle="tab"><i class="fa fa-desktop bigger-130"></i>基本资料</a></li>
+                                    <li><a href="#p2" data-toggle="tab"><i class="fa fa-edit bigger-130"></i>编辑信息</a></li>
+                                </ul>
+                                <!--										基本资料-->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="p1">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                <div class="portlet no-border">
+                                                    <div class="portlet-heading">
+                                                        <div class="portlet-title" id="userName">
+                                                            <h3>黄晓明</h3>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div  id="profile">
+                                                            电话：15527382647
+                                                        </div>
+                                                        <div class="space-4"></div>
+                                                        <address>
+                                                            <a id="email">987673746@163.com</a>
+                                                        </address>
+                                                        <div class="space-4"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <table id="airMaterialList-table" class="table-striped">
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--										编辑信息-->
+                                <div class="tab-pane fade" id="p2">
+                                    <h2>修改信息</h2>
+                                    <div class="hr hr-12 hr-double"></div>
+                                    <form class="form-horizontal" role="form" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">姓名</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <hr class="separator">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">电话</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">邮箱</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-9">
+                                                    <button type="submit" class="btn btn-primary">提交修改</button>
+                                                    <button type="submit" class="btn btn-inverse">取消编辑</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="back-to-top" class="btn btn-primary btn-sm back-to-top">
+            <i class="fa fa-angle-double-up icon-only bigger-110"></i>
+        </button>
+    </div>
+</div>
+</div>
+
+<!-- core JavaScript -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/js/plugins/pace/pace.min.js"></script>
+
+<!-- PAGE LEVEL PLUGINS JS -->
+<script src="assets/js/plugins/jqueryui/jquery-ui.custom.min.js"></script>
+<script src="assets/js/plugins/jqueryui/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/plugins/select2/select2.min.js"></script>
+<script src="assets/js/plugins/bootstrap-wysihtml/wysihtml.min.js"></script>
+<script src="assets/js/plugins/bootstrap-wysihtml/bootstrap-wysihtml.js"></script>
+<script src="assets/js/plugins/bootstrap-editable/bootstrap-editable.min.js"></script>
+<script src="assets/js/plugins/bootstrap-editable/ek-editable.js"></script>
+
+<script src="assets/js/plugins/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+<script src="assets/js/plugins/bootstrap-wysiwyg/ek-wysiwyg.js"></script>
+<script src="assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<!-- Themes Core Scripts -->
+<script src="assets/js/main.js"></script>
+
+<!-- REQUIRE FOR SPEECH COMMANDS -->
+<script src="assets/js/speech-commands.js"></script>
+<script src="assets/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+<!-- initial page level scripts for examples -->
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.init.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+<script type="text/javaScript">
+$(document).ready(function() {
+	$.post("/AMWMS/user",
+            function(res){
+                var json = JSON.parse(res);
+                var userId = json.userId;
+                var userName = json.userName;
+                document.getElementById("title").innerHTML = "管理员 "+ userName+",你好";
+                document.getElementById("userName").innerHTML = userName;
+                
+            });
+    $('#airMaterialList-table').bootstrapTable({
+        method: 'post',
+        url:"/AMWMS/user?identity=manager",//通过申请单号获得航材列表
+        striped: true,
+        pagination: true,
+        dataType: 'json',
+        pageNumber: 1,
+        pageSize: 10,
+        columns: [ {
+
+            field: 'userId',
+            title: '人员编号'
+        },{
+
+            field: 'userName',
+            title: '姓名'
+        },{
+
+            field: 'pwd',
+            title: '密码'
+        }]
+    })
+});
+    
+</script>
+</body>
+</html>

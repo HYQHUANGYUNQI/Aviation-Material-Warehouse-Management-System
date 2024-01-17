@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>航材仓库管理系统</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+
+    <!-- PAGE LEVEL PLUGINS STYLES -->
+    <!-- REQUIRE FOR SPEECH COMMANDS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/plugins/gritter/jquery.gritter.css" />
+
+    <!-- Tc core CSS -->
+    <link id="qstyle" rel="stylesheet" href="assets/css/themes/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+
+    <!-- Add custom CSS here -->
+
+    <!-- End custom CSS here -->
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #title{
+            color: #bababa;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+        #button-group{
+            margin-bottom: 2cm;
+        }
+        #reset-button, #add-button{
+            width: 3cm;
+            float: right;
+            margin-left: 10px;
+        }
+        #info-id{
+            text-align:left;
+            margin-left:20%;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="main-container">
+        <!--		顶部导航栏-->
+        <nav class="navbar-top" role="navigation">
+            <!--			顶栏标语-->
+            <div class="navbar-header">
+                <h3 id="title">  Hello,  root</h3>
+            </div>
+            <!--			顶栏图标-->
+            <div class="nav-top">
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#" class="fa fa-bell-o"></a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa fa-sign-out"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--		侧边导航栏-->
+        <nav class="navbar-side" role="navigation">
+            <div class="navbar-collapse sidebar-collapse collapse">
+                <ul id="side" class="nav navbar-nav side-nav">
+                    <li>
+                        <h4>导航</h4>
+                    </li>
+                    <li class="panel">
+                        <a href="/AMWMS/root/userList.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa fa-cogs"></i> 用户列表
+                        </a>
+                        <a href="/AMWMS/root/managerList.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#components">
+                            <i class="fa fa-cogs"></i> 管理员列表
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--			主要内容-->
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">仓库分配</a>
+                            </li>
+                            <li>
+                                <a href="#">管理员列表</a>
+                            </li>
+                            <li>
+                                <a href="#">编辑信息</a>
+                            </li>
+                        </ul>
+                        <div class="b-right hidden-xs">
+                            <ul>
+                                <li><a href="#" title=""><i class="fa fa-signal"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-comments"></i></a></li>
+                                <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--					大面板-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet">
+                        <div class="portlet-heading dark">
+                            <div class="portlet-title">
+                                <h4 style="">基本信息</h4>
+                            </div>
+                        </div>
+                        <!--							基本信息-->
+                        <div class="portlet-body" id="info-group">
+                            <form class="form-horizontal" >
+                                <div id="info-id">
+                                    <!--									用户ID-->
+                                    <div class="form-group">
+                                        <label class="control-label">用户ID:
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span id="userId-info">test</span>
+                                        </label>
+                                    </div>
+                                    <!--									用户名-->
+                                    <div class="form-group">
+                                        <label class="control-label">用户名:
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span id="userName-info">黄晓明</span>
+                                        </label>
+                                    </div>
+                                    <!--									密码-->
+                                    <div class="form-group">
+                                        <label class="control-label">密码:
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span id="pwd-info">12345678</span>
+                                        </label>
+                                    </div>
+                                    <hr class="separator" />
+
+                                    <!--									备注-->
+                                    <div class="form-group">
+                                        <label class="control-label">备注:
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            无
+                                        </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <!--									权限-->
+                                <div class="form-group" style="margin-left: 10%">
+                                    <label class="col-sm-2 control-label">权限分配</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control selectpicker" disabled id="duty-info">
+                                            <option>管理员</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            管理仓库-->
+            <div class="page-header no-padding-bottom">
+                <h4>管理仓库 &nbsp;&nbsp;<small>一个仓库仅可设置一名管理员</small>
+                    <!--                    添加航材按钮-->
+                    <button type="button" class="btn btn-second fa fa-plus" id="add-storage-button" data-toggle="modal" data-target="#add-storage-dialog" style="float: right;border: hidden;background: none">
+                    </button></h4>
+            </div>
+            <table id="added-storage-table"  class="table table-bordered table-striped  table-primary footable" data-page-size="2">
+                <thead style="background-color:#3f3f3f;color: #d9d9d9;font-family: 等线"></thead>
+            </table>
+            <!--					按钮组-->
+            <div id="button-group">
+                <button type="button" class="btn btn-inverse" id="reset-button">重置</button>
+                <button type="button" class="btn btn-primary" id="add-button">更新</button>
+            </div>
+
+            <!--弹窗-添加航材-->
+            <div class="modal fade bd-example-modal-lg" id="add-storage-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">可选择仓库</h5>
+                        </div>
+                        <div class="modal-body">
+                            <!--表格-->
+                            <table id="freeStorage-table"></table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-second" data-dismiss="modal" aria-label="Close">关闭</button>
+                            <button type="button" class="btn btn-primary">添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- core JavaScript -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/js/plugins/pace/pace.min.js"></script>
+
+<!-- PAGE LEVEL PLUGINS JS -->
+<script src="assets/js/plugins/fuelux/wizard.min.js"></script>
+<script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/additional-methods.min.js"></script>
+
+<!-- Themes Core Scripts -->
+<script src="assets/js/main.js"></script>
+
+<!-- REQUIRE FOR SPEECH COMMANDS -->
+<script src="assets/js/speech-commands.js"></script>
+<script src="assets/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+<!-- initial page level scripts for examples -->
+<script src="assets/js/plugins/slimscroll/jquery.slimscroll.init.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+<script>
+    var userId;
+    var userName;
+    $(function () {
+        //启动页面的所有弹窗，通过js
+        var checkUserId = window.location.href.split("=")[1];
+        $("[data-toggle='popover']").popover();
+        $.post(
+            "/AMWMS/user?identity=root&&req=user&&userId="+checkUserId,
+            function(res){
+                var json = $.parseJSON(res);
+                userId = json[0].userId;
+                userName = json[0].userName;
+                document.getElementById("userId-info").innerHTML = userId;
+                document.getElementById("userName-info").innerHTML = userName;
+                document.getElementById("pwd-info").innerHTML = json[0].pwd;
+            });
+        $.post("/AMWMS/storageArrange");
+        
+		var storage = new Array();
+        $('#freeStorage-table').bootstrapTable({
+            url:"/AMWMS/storageArrange?req=addablestorage",
+            method: 'post',
+            striped: true,
+            pagination: true,
+            dataType: 'json',
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数
+            toorbar:true,
+            onClickRow:function(row, $element) {
+                var temp = row['id'];
+                var param1={
+                    url:"/AMWMS/storageArrange?req=addedstorage&&operate=add&&id="+temp,
+                }
+                var param2 = {
+                    url:"/AMWMS/storageArrange?req=addablestorage&&operate=del&&id="+temp,
+                }
+                $('#added-storage-table').bootstrapTable('refresh', param1);
+                $('#freeStorage-table').bootstrapTable('refresh', param2);
+                storage.push(temp);
+            },
+            columns: [
+                {
+                    field: 'id',
+                    title: '仓库号'
+                }, {
+                    field: 'name',
+                    title: '仓库名称'
+                }]
+        });
+
+        $('#added-storage-table').bootstrapTable({
+            method: 'post',
+            url:"/AMWMS/storageArrange?req=addedStorage",
+            striped: true,
+            pagination: true,
+            dataType: 'json',
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数
+            onClickRow:function(row, $element) {
+                var temp = row['id'];
+                var param1={
+                    url:"/AMWMS/storageArrange?req=addedstorage&&operate=del&&id="+temp,
+                }
+                var param2 = {
+                    url:"/AMWMS/storageArrange?req=addablestorage&&operate=add&&id="+temp,
+                }
+                $('#added-storage-table').bootstrapTable('refresh', param1);
+                $('#freeStorage-table').bootstrapTable('refresh', param2);
+                storage.forEach(function(item, index, arr) {
+                    if(item == temp) {
+                        arr.splice(index, 1);
+                    }
+                });
+            },
+            columns: [
+                {
+                    field: 'id',
+                    title: '仓库号'
+                }, {
+                    field: 'name',
+                    title: '仓库名称'
+                }]
+        });
+
+        $("#reset-button").click(function(){
+            var param1={
+                url:"/AMWMS/storageArrange?req=addedstorage&&operate=reset",
+            }
+            var param2 = {
+                url:"/AMWMS/storageArrange?req=addablestorage&&operate=reset",
+            }
+
+            $('#added-storage-table').bootstrapTable('refresh', param1);
+            $('#freeStorage-table').bootstrapTable('refresh', param2);
+            storage = new Array();
+        });
+
+        $("#add-button").click(function(){
+            $.post("/AMWMS/userarrange",
+                {"storageArrange":storage[0],
+            	 "userId":checkUserId,
+            	 "operate":"update"},
+                function(msg){
+                    var json = $.parseJSON(msg);
+                    var sig = json.flag;
+                    if(sig){
+                        alert("提交成功!"+ json.num + "条记录" );
+                        window.location.href = "/AMWMS/root/managerList.html";
+                    }
+                    else {
+                        alert("更新失败!");
+                    }
+                });
+        });
+    })
+
+
+</script>
+</body>
+</html>
